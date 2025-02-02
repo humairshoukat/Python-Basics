@@ -5,6 +5,9 @@
 # Operators, Variables, Data Types, Strings, Precedence, Loops, List. Tuples, Dictionary, Classes, Formatting
 
 # Variables in Python
+# Can't use name of keywords as variable names
+# Keywords: False, None, True, and, as, assert, break, class, continue, def, del, elif, else, except, finally, 
+# for, from, global, if, import, in, is, lambda, not, or, pass, raise, return, try, while, with, yield
 x = 'Hello World!'
 my_age = 20
 
@@ -207,4 +210,293 @@ Family = {
 print("Family: ", Family)
 
 # Statements in Python
+# if-else, if-else-if
+age = input("Enter your age: ")
+age = int(age)
 
+if (age<18):
+    print("You're too young for a license")
+elif (age >= 18 and age <=60):
+    print("You're eligible for a license")
+else:
+    print("You're too old for a license")
+
+if (True and False):
+    print("1")
+else:
+    print("2")
+
+if (False or True):
+    print("1")
+else:
+    print("2")
+
+
+# Loops in Python
+
+#basic for loop
+for i in range(0, 10):
+    print(i)
+
+#iterating lists
+list1 = range(0,5)
+list2 = list("Hello")
+for x in list1:
+    print(x)
+print("\n\n")
+for y in list2:
+    print(y)
+
+#iterate through dictionary items
+countries = dic.keys()
+countries = list(countries) 
+for c in countries:
+    print(c*3)
+print("\n")
+
+#iterate through a list by indexes, and raise it to the power of its value
+list3 = [1,2,3,4,5]
+for i in range(0,len(list3)):
+    list3[i] = list3[i] ** list3[i]
+    print(list3[i])
+
+#iterate dictionaries
+
+for key,value in dic.items():
+    print(key, " -> ", value)
+
+
+#basic while loop
+i = 0
+while(i<10):
+    print(i)
+    i+=1
+
+count = 0
+times = 10
+while (count<times):
+    print(count+1, ") Pakistan Zindabad")
+    count = count+1
+
+age = 30
+commission = 0
+while (age>18):
+    commission += 100
+    age-= 1
+print(commission)
+
+
+#list comprehension
+list1 = []
+for i in range(0, 5):
+    list1.append(i)
+    
+list1
+
+list1 = [i+3 for i in range(0,5)]
+list1
+
+# Functions in Python
+
+#Pass a name to a function to print a Hi statement with that name
+def say_hi_to(name):
+    print("Hi", name)
+
+#Say Hi to Usman
+say_hi_to("Usman")
+  
+#Given an age, check if that age is eligible for a license, print relevant message
+def eligibility(age):
+    if (age<18):
+        print("You're too young for a license")
+    elif (age >= 18 and age <=60):
+        print("You're eligible for a license")
+    else:
+        print("You're too old for a license")
+
+#Check if a person aged 17 is eligible for license
+eligibility(17)
+
+#Print a given list/array in reverse
+def reverse_print(list1):
+    length = len(list1)
+    length-=1
+    while (length >= 0):
+        print(list1[length])
+        length -= 1
+
+#Print the given list in reverse
+reverse_print([1,2,3,4,5])
+
+#Get details of a customer, and return as a tuple to unpack
+def get_details():
+    name = input("Enter Name: ")
+    age = input("Enter Age: ")
+    #convert into a tuple
+    dets = (name, age)
+    return dets
+
+#Get Details of a new employee
+n1, a1 = get_details()
+print("\nYour details are as follows:")
+print(n1)
+print(a1)
+
+#check if a particular value exists in a list
+def exists(list1, num):
+    for val in list1:
+        if (val == num):
+            return True
+    return False
+
+#Check if the number '9' exists in the given list
+ex = exists([9,8,4,4], 9)
+ex
+
+#return the square of a number
+def get_square(val):
+    return val*val
+
+#Find the square of 9
+sq = get_square(9)
+sq
+
+
+# Classes in Python (Object Oriented Programming)
+
+#Basic Class Outline
+
+class Dog:
+    
+    #constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        print(self.name, "has been made")
+        print(self.name, "is", age, "years old")
+    
+    def bark():
+        print("Woof Woof")
+        
+    def getname(self):
+        return self.name
+    
+    def getage(self):
+        return self.age
+    
+    def setage(self, val):
+        self.age = val
+    
+    def setname(self, n):
+        self.name = n
+        
+    def agenextyear(self, age):
+        return age+1
+    
+d1 = Dog("Dog1",13)
+d2 = Dog("Dog2", 9)
+
+
+#Composition
+class Student:
+    
+    def __init__(self, name, age, score):
+        self.name = name
+        self.age = age
+        self.score = score
+        
+    def getscore(self):
+        return self.score
+    
+class Course:
+    
+    def __init__(self, name, maxstd):
+        self.name = name; 
+        self.maxstd = maxstd
+        self.students = []
+        
+    def add_student(self, student):
+        if len(self.students) < self.maxstd:
+            self.students.append(student)
+            print("Enrolled Successfully")
+            return True
+        print("Seats are full")
+        return False
+    
+    
+    def avgscore(self):
+        
+        val = 0
+        for student in self.students:
+            val += student.getscore()
+            
+        print("Average score:", val/len(self.students))
+        return val/len(self.students)
+        
+        
+S1 = Student("Humair", 21, 80)
+S2 = Student("Mashal", 21, 96)
+S3 = Student("Ali", 19, 75)
+
+BigData = Course("Big Data Analytics", 5)
+BigData.add_student(S1)
+BigData.add_student(S2)
+BigData.add_student(S3)
+BigData.avgscore()
+
+
+#Inheritance
+
+class Pet:
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        
+    def details(self):
+        print(f"I am {self.name} and I am {self.age} years old")
+        
+class Cat(Pet):
+    def speak(self):
+        print("Meow")
+    
+    def all_details(self):
+        print("I am a Catto")
+        self.details()
+        
+class Dog(Pet):
+    def speak(self):
+        print("Bark")
+    
+P1 = Pet("Tony", 18)
+P1.details()
+
+
+print("\n\n")
+
+
+C1 = Cat("Tom", 30)
+C1.details()
+C1.all_details()
+C1.speak()
+
+
+## Libraries / Frameworks to learn in Python
+
+# Data Processing, Cleaning
+# NumPy, Pandas
+
+# Data Visualization
+# Matplotlib, Seaborn
+
+# Data Scraping & Automation
+# BeautifulSoup, Scrapy, Selenium
+
+# Machine Learning
+# Scikit-learn, TensorFlow, Keras, Pytorch, OpenCV, NLTK
+
+# Backend Development
+# Django, Flask, FastAPI
+
+# Game Development
+# Pygame
